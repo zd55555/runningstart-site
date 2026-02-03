@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About / Running Start AI</title>
+    <meta name="description" content="About Running Start AI. Instructional designer and parent thinking about AI's impact on learning, work, and raising kids.">
+
+    <meta property="og:title" content="About / Running Start AI">
+    <meta property="og:description" content="Instructional designer and parent thinking about AI's impact on learning, work, and raising kids.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://runningstart.ai/about.html">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --text: #1c1917;
+            --text-mid: #44403c;
+            --text-quiet: #78716c;
+            --bg: #faf9f6;
+            --green: #3d6b4f;
+            --green-soft: #e6ede8;
+            --rule: #e7e5e0;
+            --col: 640px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .frame {
+            max-width: var(--col);
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        /* ---- NAV ---- */
+        nav {
+            padding: 1.5rem 0;
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.82rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .site-link {
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        nav .site-link:hover {
+            opacity: 0.7;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        nav .nav-links a {
+            color: var(--text-quiet);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        nav .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .rule {
+            border: none;
+            border-top: 1px solid var(--rule);
+        }
+
+        /* ---- ABOUT CONTENT ---- */
+        .about {
+            padding: 3rem 0 4rem;
+            animation: arrive 0.6s ease-out both;
+        }
+
+        .about-title {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .about-body {
+            font-size: 1.1rem;
+            color: var(--text-mid);
+            line-height: 1.8;
+        }
+
+        .about-body p {
+            margin-bottom: 1rem;
+        }
+
+        .about-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            padding: 1.75rem 0 2.75rem;
+            border-top: 1px solid var(--rule);
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-quiet);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer a {
+            color: var(--green);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes arrive {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-title { font-size: 1.6rem; }
+            .about-body { font-size: 1rem; }
+            footer {
+                flex-direction: column;
+                gap: 0.4rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="frame">
+    <nav>
+        <a class="site-link" href="index.html">Running Start AI</a>
+        <div class="nav-links">
+            <a href="index.html">Posts</a>
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+    </nav>
+    <hr class="rule">
+</div>
+
+<main class="about frame">
+    <h1 class="about-title">About</h1>
+    <div class="about-body">
+        <p>This page is a work in progress. More coming soon.</p>
+
+        <!--
+        ============================================================
+        IDEAS FOR THIS PAGE (fill in when ready):
+
+        - Your background (instructional design, 1199SEIU, coaching)
+        - Why you started this site
+        - The three areas you're exploring:
+            1. AI and critical thinking
+            2. Future of work
+            3. AI and attention/relationships
+        - Your operating principle: epistemic humility
+        - A photo
+        - How people can reach you
+        ============================================================
+        -->
+    </div>
+</main>
+
+<footer class="frame">
+    <span>&copy; 2026 Running Start AI</span>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">LinkedIn</a>
+</footer>
+
+</body>
+</html>
