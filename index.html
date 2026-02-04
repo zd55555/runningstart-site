@@ -17,262 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --text: #1c1917;
-            --text-mid: #44403c;
-            --text-quiet: #78716c;
-            --bg: #faf9f6;
-            --green: #3d6b4f;
-            --green-soft: #e6ede8;
-            --rule: #e7e5e0;
-            --col: 640px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.75;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        .frame {
-            max-width: var(--col);
-            margin: 0 auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        /* ---- HERO / HEADER ---- */
-        .hero {
-            /* SWAP THIS: Replace background-color with your image:
-               background: url('images/hero.jpg') center / cover no-repeat;
-            */
-            background-color: #2e3d30;
-            padding: 4.5rem 1.5rem 4rem;
-            animation: arrive 0.6s ease-out both;
-        }
-
-        .hero-inner {
-            max-width: var(--col);
-            margin: 0 auto;
-        }
-
-        .mark {
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 1.25rem;
-        }
-
-        .bio {
-            font-size: 1.25rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #fff;
-            max-width: 520px;
-        }
-
-        .hero-links {
-            margin-top: 1.15rem;
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.82rem;
-            display: flex;
-            gap: 1.25rem;
-        }
-
-        .hero-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .hero-links a:hover {
-            color: #fff;
-            border-bottom-color: rgba(255,255,255,0.6);
-        }
-
-        a.link {
-            color: var(--green);
-            text-decoration: none;
-            border-bottom: 1px solid var(--green-soft);
-            transition: border-color 0.2s ease;
-        }
-
-        a.link:hover {
-            border-bottom-color: var(--green);
-        }
-
-        /* ---- RULE ---- */
-        .rule {
-            border: none;
-            border-top: 1px solid var(--rule);
-        }
-
-        /* ---- POSTS ---- */
-        .posts {
-            padding-top: 2rem;
-            padding-bottom: 4rem;
-        }
-
-        .section-label {
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-quiet);
-            margin-bottom: 2rem;
-        }
-
-        .post {
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--rule);
-            animation: arrive 0.6s ease-out both;
-        }
-
-        .post:nth-child(2) { animation-delay: 0.08s; }
-        .post:nth-child(3) { animation-delay: 0.16s; }
-        .post:nth-child(4) { animation-delay: 0.24s; }
-
-        .post:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .post-date {
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.78rem;
-            color: var(--text-quiet);
-            margin-bottom: 0.4rem;
-        }
-
-        .post-title {
-            font-size: 1.45rem;
-            font-weight: 600;
-            line-height: 1.35;
-            margin-bottom: 0.85rem;
-            color: var(--text);
-            letter-spacing: -0.01em;
-        }
-
-        .post-body {
-            font-size: 1.05rem;
-            color: var(--text-mid);
-            line-height: 1.8;
-        }
-
-        .post-body p {
-            margin-bottom: 0.85rem;
-        }
-
-        .post-body p:last-child {
-            margin-bottom: 0;
-        }
-
-        .post-figure {
-            margin: 1.5rem 0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .post-figure img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .post-figure figcaption {
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.72rem;
-            color: var(--text-quiet);
-            margin-top: 0.5rem;
-            line-height: 1.5;
-        }
-
-        .post-cta {
-            display: inline-block;
-            margin-top: 1rem;
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--green);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-
-        .post-cta:hover {
-            border-bottom-color: var(--green);
-        }
-
-        .post-cta .arrow {
-            display: inline-block;
-            margin-left: 0.25em;
-            transition: margin-left 0.2s ease;
-        }
-
-        .post-cta:hover .arrow {
-            margin-left: 0.5em;
-        }
-
-        /* ---- FOOTER ---- */
-        footer {
-            padding: 1.75rem 0 2.75rem;
-            border-top: 1px solid var(--rule);
-            font-family: 'Hanken Grotesk', system-ui, sans-serif;
-            font-size: 0.78rem;
-            color: var(--text-quiet);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        footer a {
-            color: var(--green);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* ---- ANIMATION ---- */
-        @keyframes arrive {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 600px) {
-            .hero { padding: 3rem 1.25rem 3rem; }
-            .bio { font-size: 1.1rem; }
-            .post-title { font-size: 1.28rem; }
-            .post-body { font-size: 1rem; }
-            footer {
-                flex-direction: column;
-                gap: 0.4rem;
-                text-align: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -287,6 +32,8 @@
     </div>
 </header>
 
+<div class="accent-bar"></div>
+
 <main class="posts frame">
     <div class="section-label">Writing</div>
 
@@ -298,7 +45,7 @@
     2. Paste it ABOVE the existing posts (newest first)
     3. Fill in: date, title, body paragraphs, LinkedIn URL
     4. For images: drop the file in /images, add a <figure>
-    5. Deploy: drag the whole folder onto Netlify
+    5. Deploy: changes auto-deploy when pushed to GitHub
     ============================================================
     -->
 
@@ -316,6 +63,7 @@
             <figcaption>Source: Manning &amp; Aguirre, NBER Working Paper 34705, 2026</figcaption>
         </figure>
         <a class="post-cta" href="https://www.linkedin.com/feed/update/YOUR-POST-ID/" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
+        <div class="post-divider"><span class="post-divider-dot"></span></div>
     </article>
 
     <article class="post">
@@ -325,6 +73,7 @@
             <p>Replace this with the text from an older LinkedIn post. Keep the same structure: date, title, paragraphs, link. Delete this placeholder once you've added real content.</p>
         </div>
         <a class="post-cta" href="https://www.linkedin.com/feed/update/YOUR-POST-ID/" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
+        <div class="post-divider"><span class="post-divider-dot"></span></div>
     </article>
 
 </main>
