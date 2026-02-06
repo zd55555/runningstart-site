@@ -239,6 +239,34 @@ a.link:hover {
     margin-bottom: 0;
 }
 
+.post-body .aside {
+    font-size: 0.95rem;
+    color: var(--text-quiet);
+    font-style: italic;
+}
+
+.post-body .comment {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--accent-soft);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+}
+
+.post-body .comment a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.post-body .comment a:hover {
+    color: var(--pop);
+    border-bottom-color: var(--pop);
+}
+
 .post-figure {
     margin: 1.5rem 0;
     border-radius: 3px;
