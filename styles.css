@@ -494,6 +494,18 @@ a.link:hover {
 }
 
 /* ---- RESOURCE LIST (resources page) ---- */
+.resource-banner {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.resource-banner img {
+    width: 100%;
+    display: block;
+}
+
 .resource-section {
     margin-bottom: 2.5rem;
 }
