@@ -610,6 +610,82 @@ a.link:hover {
     border-bottom-color: var(--pop);
 }
 
+/* ---- PATH CARDS (homepage) ---- */
+.paths {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+.path-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.path-card {
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    animation: arrive 0.6s ease-out both;
+}
+
+.path-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+
+.path-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+}
+
+.path-description {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.path-cta {
+    display: inline-block;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.path-cta:hover {
+    color: var(--pop);
+    border-bottom-color: var(--pop);
+}
+
+.path-cta .arrow {
+    display: inline-block;
+    margin-left: 0.25em;
+    color: var(--pop);
+    transition: margin-left 0.2s ease;
+}
+
+.path-cta:hover .arrow {
+    margin-left: 0.5em;
+}
+
+/* ---- FEATURED THOUGHTS (homepage) ---- */
+.featured {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.see-all {
+    margin-top: 2rem;
+    text-align: center;
+}
+
 /* ---- FOOTER ---- */
 footer {
     padding: 1.75rem 0 2.75rem;
@@ -656,6 +732,7 @@ footer a:hover {
     .article-body { font-size: 1rem; }
     .article-heading { font-size: 1.15rem; }
     .topic-grid { grid-template-columns: 1fr; }
+    .path-grid { grid-template-columns: 1fr; }
     footer {
         flex-direction: column;
         gap: 0.4rem;

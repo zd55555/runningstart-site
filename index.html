@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Running Start AI</title>
-    <meta name="description" content="Thinking out loud about how AI changes the way we learn, work, and raise kids.">
+    <meta name="description" content="Practical guidance for getting started with AI — whether you're brand new or ready to go deeper.">
 
-    <!-- Open Graph for LinkedIn sharing -->
     <meta property="og:title" content="Running Start AI">
-    <meta property="og:description" content="Thinking out loud about how AI changes the way we learn, work, and raise kids.">
+    <meta property="og:description" content="Practical guidance for getting started with AI — whether you're brand new or ready to go deeper.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://runningstart.ai">
 
@@ -24,8 +23,9 @@
 <header class="hero">
     <div class="hero-inner">
         <div class="mark">Running Start AI</div>
-        <p class="bio">Thoughts on education, technology, and the future of everything.</p>
+        <p class="bio">AI is changing how we learn, work, and live. This site is here to help you keep up — whether you're just getting started or ready to go deeper.</p>
         <div class="hero-links">
+            <a href="thoughts.html">Thoughts</a>
             <a href="about.html">About</a>
             <a href="hci.html">Research</a>
             <a href="resources.html">Resources</a>
@@ -35,33 +35,34 @@
 
 <div class="accent-bar"></div>
 
-<main class="posts frame">
-    <div class="section-label">Writing</div>
+<!-- ---- TWO PATHS ---- -->
+<section class="paths frame">
+    <div class="section-label">Start here</div>
 
-    <!--
-    ============================================================
-    HOW TO ADD A NEW POST
-    ============================================================
-    1. Copy an <article class="post"> block
-    2. Paste it ABOVE the existing posts (newest first)
-    3. Fill in: date, title, body paragraphs, LinkedIn URL
-    4. For images: drop the file in /images, add a <figure>
-    5. Deploy: changes auto-deploy when pushed to GitHub
-    ============================================================
-    -->
+    <div class="path-grid">
+        <div class="path-card">
+            <h2 class="path-title">First Steps</h2>
+            <p class="path-description">New to AI? Start with one tool, a few use cases, and a challenge: use it every day for a week. You'll learn more by doing than by reading about it.</p>
+            <a class="path-cta" href="first-steps.html">Get started<span class="arrow">→</span></a>
+        </div>
+
+        <div class="path-card">
+            <h2 class="path-title">Go Deeper</h2>
+            <p class="path-description">Already using AI regularly? Level up with meta-prompting, custom GPTs, Claude Artifacts, and techniques that turn a chatbot into a real workflow.</p>
+            <a class="path-cta" href="go-deeper.html">Keep going<span class="arrow">→</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- ---- FEATURED THOUGHTS ---- -->
+<section class="featured frame">
+    <div class="section-label">Recent thoughts</div>
 
     <article class="post">
         <div class="post-date">February 2026</div>
         <h2 class="post-title">The Workers Most at Risk</h2>
         <div class="post-body">
             <p>Of the millions of jobs that will be displaced by AI, the most at risk are low-paying administrative titles. These workers are more likely to have little savings, fewer transferable skills, and therefore limited opportunity to pivot.</p>
-            <p>UBI and other safety nets are a long way off. We need to prioritize financial literacy in (re)training programs.</p>
-            <p class="aside">[Here's the version I gave my nephew that actually stuck. Figure out two numbers: earnings vs. spending. Make sure the former is larger than the latter. Download an app like You Need A Budget (free year for students). And if you or someone you know is check to check, visit 211.org for free local resources.]</p>
-            <figure class="post-figure">
-                <img src="images/NBER.jpg" alt="NBER research paper on AI job displacement">
-            </figure>
-            <p class="comment">6.1 million American workers are both highly exposed to AI and least equipped to adapt if their jobs get disrupted. Overwhelmingly clerical and administrative roles. 86% women.<br>
-            — <a href="https://www.nber.org/papers/w34705" target="_blank" rel="noopener">"How Adaptable Are American Workers to AI-Induced Job Displacement?"</a> National Bureau of Economic Research</p>
         </div>
         <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_of-the-millions-of-jobs-that-will-be-displaced-activity-7425157225490419712-bHK0" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
         <div class="post-divider"><span class="post-divider-dot"></span></div>
@@ -71,210 +72,9 @@
         <div class="post-date">January 2026</div>
         <h2 class="post-title">The AI Tradeoff</h2>
         <div class="post-body">
-            <p>The AI tradeoff: productivity up, knowledge down.</p>
-            <p>I'm referring primarily to an overreliance on AI when doing research. Soon, we'll all have access to tools like ChatGPT's agents, which can conduct deep research and create presentations. How will a student (or employee) handle Q&A if they were barely involved in the research and development of the content?</p>
-            <p>It will be tempting to delegate everything, but people need to be aware of the tradeoff. Emphasize it during AI literacy training when discussing other caveats and limitations (bias, hallucinations, data privacy, etc.)</p>
-            <a class="link-card" href="https://openai.com/index/introducing-chatgpt-agent/" target="_blank" rel="noopener">
-                <span class="link-card-title">Introducing ChatGPT agent: bridging research and action</span>
-                <span class="link-card-source">openai.com</span>
-            </a>
+            <p>The AI tradeoff: productivity up, knowledge down. It will be tempting to delegate everything, but people need to be aware of the tradeoff.</p>
         </div>
         <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_introducing-chatgpt-agent-bridging-research-activity-7351840217810509824-tmTZ" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">November 2025</div>
-        <h2 class="post-title">AI Transparency Statements</h2>
-        <div class="post-body">
-            <p>Here's a great approach to AI transparency. Think more along the lines of "show your work" instead of "stop cheating."</p>
-            <figure class="post-figure">
-                <img src="images/jason.jpg" alt="Jason Gulya's post on AI Transparency Statements" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_my-students-submit-ai-transparency-statements-activity-7336001209985650688-ktaj" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">December 2025</div>
-        <h2 class="post-title">The Future of Work Is Agentic</h2>
-        <div class="post-body">
-            <p>McKinsey's AI Agents primer breaks down what's starting to happen and what's next (34-min podcast or full read).</p>
-            <p>HR + IT converging to develop and train a hybrid human–AI workforce.</p>
-            <p>Org charts → work charts.</p>
-            <p>Just needs one small but important edit: from "humans in the loop" to "humans in the lead."</p>
-            <figure class="post-figure">
-                <a href="https://mck.co/3FHenHn" target="_blank" rel="noopener">
-                    <img src="images/mckinsey.jpg" alt="McKinsey: Why agents are the next frontier of generative AI" loading="lazy">
-                </a>
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_the-future-of-work-is-agentic-activity-7338899948362448897-mwek" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">September 2025</div>
-        <h2 class="post-title">Telepathic Interfaces</h2>
-        <div class="post-body">
-            <p>Even if this "telepathic" tool only works half as well as the demo, it would have amazing potential for accessibility. And for anyone dreaming of getting rid of their mouse and keyboard (without surgery).</p>
-            <a class="link-card" href="https://x.com/alterego_io/status/1965113585299849535" target="_blank" rel="noopener">
-                <span class="link-card-title">Introducing Alterego: the world's first near-telepathic wearable</span>
-                <span class="link-card-source">x.com/alterego_io</span>
-            </a>
-            <figure class="post-figure">
-                <img src="images/alterego.jpg" alt="Alterego telepathic wearable interface demo" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_alterego-alteregoio-on-x-activity-7371515423470694400-6CgV" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">February 2025</div>
-        <h2 class="post-title">Teaching Students to Work With Machines</h2>
-        <div class="post-body">
-            <p>"We have to teach students how to work with machines that are smarter than them. Figuring this out is the only conversation that matters, and there is no magical solution to it." —<a class="link" href="https://stefanbauschard.substack.com/p/how-do-we-teach-students-to-work" target="_blank" rel="noopener">Stefan Bauschard</a></p>
-            <p>If you've yet to use a model that explains its "thought" process and grounds the results in sources, go to perplexity.ai and select "Deep Research"</p>
-            <a class="link-card" href="https://stefanbauschard.substack.com/p/how-do-we-teach-students-to-work" target="_blank" rel="noopener">
-                <span class="link-card-title">How Do We Teach Students to Work With Machines Smarter Than Them?</span>
-                <span class="link-card-source">stefanbauschard.substack.com</span>
-            </a>
-            <figure class="post-figure">
-                <img src="images/perplexity.jpg" alt="Perplexity AI Deep Research interface" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_we-have-to-teach-students-how-to-work-with-activity-7298327766196731905-Yd8e" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">January 2025</div>
-        <h2 class="post-title">2025 Future of Jobs Report</h2>
-        <div class="post-body">
-            <p>The infographics are worth reviewing, if not for the data - for design ideas next time you need to make visuals.</p>
-            <figure class="post-figure">
-                <img src="images/Future of Jobs.jpg" alt="World Economic Forum Future of Jobs Report 2025" loading="lazy">
-            </figure>
-            <a class="link-card" href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/infographics-94b6214b36/" target="_blank" rel="noopener">
-                <span class="link-card-title">The Future of Jobs Report 2025 - Infographics</span>
-                <span class="link-card-source">weforum.org</span>
-            </a>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_2025-future-of-jobs-report-world-economic-activity-7283467247774269440-MyQw" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">December 2024</div>
-        <h2 class="post-title">Phone a Friend</h2>
-        <div class="post-body">
-            <p>On "Who Wants to Be a Millionaire?" contestants never asked for a help article. They wanted to phone a friend. That's where we're headed with 1-800-ChatGPT (yeah, that's real) and NotebookLM's podcast-style audio overview, which now allows you to jump into the conversation and ask questions.</p>
-            <p>The latter is a step closer to what we'll want to see because it's grounded in the resources you upload - just as firms will connect to their knowledge base. Aside from the beauty of getting the exact answer you need, when you need it, consider the efficiency: Our typing rate vs. our speaking rate of 150+ words per minute.</p>
-            <p>Many companies already offer solutions like this - it's just become much easier to create, host, update, etc. these types of tools now. And this all points to the question: Is the training even needed if quality, just-in-time information is so readily available?</p>
-            <figure class="post-figure">
-                <img src="images/notebooklm.jpg" alt="Google NotebookLM audio overview interface" loading="lazy">
-            </figure>
-            <a class="link-card" href="https://notebooklm.google/" target="_blank" rel="noopener">
-                <span class="link-card-title">NotebookLM</span>
-                <span class="link-card-source">notebooklm.google</span>
-            </a>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_google-notebooklm-ai-research-tool-thinking-activity-7275861086006874113-4d0g" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">December 2024</div>
-        <h2 class="post-title">Sora: From Toy to Tool</h2>
-        <div class="post-body">
-            <p>There was nothing like Sora when OpenAI first announced it 10 months ago, but now there are several comparable text-to-video generators. See comparisons in Ethan Mollick's post below. You'll need the pro upgrade ($200/month) if you want to upload reference images. That's where this shifts from being a toy to a practical tool.</p>
-            <figure class="post-figure">
-                <img src="images/sora.jpg" alt="OpenAI Sora text-to-video generation example" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_golden-retriever-running-through-a-brutalist-activity-7272095402013646848-53Ga" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">November 2024</div>
-        <h2 class="post-title">200+ AI Use Cases</h2>
-        <div class="post-body">
-            <p>200+ examples of businesses leveraging Microsoft's AI-powered tools, each linked to a full-page vignette. I'm not sure if I'm more impressed with the marketing or the actual use cases.</p>
-            <figure class="post-figure">
-                <a href="https://lnkd.in/e6bU3YFa" target="_blank" rel="noopener">
-                    <img src="images/200.jpg" alt="Microsoft AI business transformation examples" loading="lazy">
-                </a>
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_how-real-world-businesses-are-transforming-activity-7263175159442812928-Yghu" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">November 2024</div>
-        <h2 class="post-title">The SIFT Method</h2>
-        <div class="post-body">
-            <p>Detecting fake images, videos, and other disinformation is nearly impossible. Instead of searching for inconsistent shadows or an eleventh finger, try the SIFT method.</p>
-            <figure class="post-figure">
-                <a href="https://lnkd.in/ex46cju7" target="_blank" rel="noopener">
-                    <img src="images/sift.jpg" alt="SIFT method for evaluating online information" loading="lazy">
-                </a>
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_library-guides-evaluating-resources-and-activity-7259536683564437504-2_ZX" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">October 2024</div>
-        <h2 class="post-title">AI Agents Need a Rebrand</h2>
-        <div class="post-body">
-            <p>AI "Agents" are barely a thing and already need a rebrand. Actually, it's fitting that "real estate" or "CIA agent" comes to mind—it highlights both the potential benefits and risks.</p>
-            <p>Microsoft's new AI "agents" are like a powerful, user-friendly upgrade to Power Automate. You'll see some polished use cases in the video, which aim to show a clearer path to ROI than their existing Copilot upgrade. Anthropic's latest release is a bigger leap, with the AI acting like a human clicking through websites to complete tasks - called robotic process automation (RPA). Imagine asking, "Buy me round trip tickets to Puerto Rico (no Spirit Airlines)," and it's done.</p>
-            <p>Spoiler: It can't do that consistently. . . yet.</p>
-            <p>Why can't the robot skip the clicking and just buy the tickets directly on the backend? While possible on some sites, the web isn't built for that. . . yet.</p>
-            <figure class="post-figure">
-                <a href="https://lnkd.in/erihQS3C" target="_blank" rel="noopener">
-                    <img src="images/agent.jpg" alt="Microsoft Copilot AI agents" loading="lazy">
-                </a>
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_accelerating-work-across-the-uk-with-copilot-activity-7255185015183917058-081K" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">October 2024</div>
-        <h2 class="post-title">Google vs. ChatGPT</h2>
-        <div class="post-body">
-            <p>Yesterday, someone asked why ChatGPT doesn't return full PDFs like you'll find in Google results.</p>
-            <p>Key difference:<br>
-            ▪️ Google searches the Internet for existing content.<br>
-            ▪️ Large Language Models create content in real time.</p>
-            <p>I wish I had this visual at the time.</p>
-            <figure class="post-figure">
-                <img src="images/llm.jpg" alt="How LLMs work vs traditional search" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_llm-chatgpt-statistics-activity-7250356935261057024-ZszW" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">September 2024</div>
-        <h2 class="post-title">3 Million Syllabi</h2>
-        <div class="post-body">
-            <p>3,000,000 syllabi &amp; US Dept. of Labor Data</p>
-            <p>Using natural language processing, this research aligns syllabi with workforce skills (from O*NET), showing the extent to which higher ed meets labor market demands.</p>
-            <p>Much, much more to unpack. See Alireza Javadian Sabet's comments for a few of the charts and key takeaways.</p>
-            <figure class="post-figure">
-                <img src="images/atlas.jpg" alt="Research on syllabi alignment with workforce skills" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_education-highereducation-skill-activity-7249607732448702464-kz28" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
         <div class="post-divider"><span class="post-divider-dot"></span></div>
     </article>
 
@@ -282,129 +82,15 @@
         <div class="post-date">September 2024</div>
         <h2 class="post-title">No One Taught You How to Ride a Bike</h2>
         <div class="post-body">
-            <p>No one actually taught you how to ride a bike, and no one is going to teach you how to use AI.</p>
-            <p>Because no one can teach you how to balance on a bike (you need to feel it), and no one can teach you what AI can and can't do (you need to feel it).</p>
-            <p>Someone did encourage you to ride the bike and gave you the basics (pedal, don't fall over).</p>
-            <p>So, here's some encouragement and the basics for AI (use it, don't anthropomorphize it).</p>
-            <p>Next steps:<br>
-            ▪️ Subscribe to ChatGPT Plus: $20 (that's your bike)<br>
-            ▪️ Try live voice with the phone app<br>
-            ▪️ Use the new Canvas feature<br>
-            ▪️ Switch to Preview 01 and challenge it with a STEM question<br>
-            ▪️ Build your own custom GPT (you can do it!)</p>
-            <p>Not sure how to do any of those steps? Ask ChatGPT. Use AI to learn AI.</p>
-            <figure class="post-figure">
-                <img src="images/bike.jpg" alt="Learning to ride a bike as metaphor for learning AI" loading="lazy">
-            </figure>
+            <p>No one actually taught you how to ride a bike, and no one is going to teach you how to use AI. Because no one can teach you how to balance on a bike (you need to feel it), and no one can teach you what AI can and can't do (you need to feel it).</p>
         </div>
         <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_no-one-actually-taught-you-how-to-ride-a-activity-7247945997358706688-p1G3" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
     </article>
 
-    <article class="post">
-        <div class="post-date">September 2024</div>
-        <h2 class="post-title">I Made a Podcast With One Click</h2>
-        <div class="post-body">
-            <p>I hadn't planned on making a podcast about AI and the Future of Work, but here we are.</p>
-            <p>With Google's NotebookLM, you upload files, and it will summarize, create study guides, FAQs - and now it can even generate podcasts.* I tested it with three files: the US Bureau of Labor Statistics' employment projections (Aug 2024), the International Monetary Fund's report on AI and the future of work (Jan 2024), and JFF's AI-Ready Workforce (Nov 2023).</p>
-            <p>The result? A 19-minute podcast created with one click using the 'Dive Deep' feature. Just listen to the first few minutes to hear the conversational tone and how it pulled key points from the reports.</p>
-            <p>This would be much more useful if it could be edited. I'd cut it down to 10 minutes, for example. Even in its current form, it's a great teaching tool. Students could read the source files and then evaluate the AI-generated podcast.</p>
-            <p class="aside">*This is an example of Retrieval-Augmented Generation (RAG), where AI generates content by referencing specific documents you provide. Why use RAG? Usually chatbots like ChatGPT or Gemini generate responses from a massive general knowledge base. RAG, by contrast, ensures the output is more accurate and relevant by pulling only from the documents you upload. This makes it incredibly useful for research, where accuracy and staying true to the source is critical.</p>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_future-of-workwav-activity-7242300911350333440-izMx" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">August 2024</div>
-        <h2 class="post-title">Returning With No AI Guidance</h2>
-        <div class="post-body">
-            <p>Returning for the 2024-2025 academic year with little to no guidance? A friend is facing this. After a week of PD, with no clear AI policies or training, the district has defaulted to an abstinence-only policy. Risky.</p>
-            <p>If you're in a similar situation and not sure where to start:</p>
-            <p>1. Give students guidance. Saying, "Don't use AI" is not realistic. They are already using it. You'll just get shadow use, and AI detection tools are inconsistent at best.</p>
-            <p>2. Encourage transparency:<br>
-            a) Require citations (<a class="link" href="https://lnkd.in/gDdGZj63" target="_blank" rel="noopener">MLA's AI guide</a>)<br>
-            b) Consider a "show your work" approach, similar to how math instruction adapted to calculators. For example, if you allow them to brainstorm using ChatGPT as part of the writing process, students could provide screenshots of (or links to) the chatbot conversation.</p>
-            <p>For more:<br>
-            • <a class="link" href="https://lnkd.in/gaiarB6g" target="_blank" rel="noopener">AI Guidance for K-12 Educators</a><br>
-            • <a class="link" href="https://lnkd.in/gkwpaarT" target="_blank" rel="noopener">Higher Ed, Syllabi Policies (Crowd Sourced)</a></p>
-            <figure class="post-figure">
-                <img src="images/school.jpg" alt="Back to school with no AI guidance" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_returning-for-the-2024-2025-academic-year-activity-7234888345837850624-otoA" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">August 2024</div>
-        <h2 class="post-title">TeachAI</h2>
-        <div class="post-body">
-            <p>Explore <a class="link" href="https://teachai.org" target="_blank" rel="noopener">TeachAI.org</a>: great resources on responsible AI use in education. Geared toward K-12 but adaptable for any educational setting. Toolkits include editable presentations, policy briefs, letters to instructors, etc.</p>
-            <figure class="post-figure">
-                <img src="images/teachai.jpg" alt="TeachAI.org resources for responsible AI in education" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_explore-teachaiorg-great-resources-on-responsible-activity-7231978383872577536-Y49n" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">August 2024</div>
-        <h2 class="post-title">Mind-Blown Moment With Lindy</h2>
-        <div class="post-body">
-            <p>A great use case for AI agents, with a cautionary note - Rowan accidentally enabled it before finalizing everything. Tool used: lindy.ai</p>
-            <figure class="post-figure">
-                <img src="images/mind.jpg" alt="Lindy.ai agent use case" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_just-had-my-first-mind-blown-moment-with-activity-7230687530357067776-Z2qE" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">July 2024</div>
-        <h2 class="post-title">Walking on the Moon</h2>
-        <div class="post-body">
-            <p>While we continue to wait for OpenAI to release Sora, you can try Chinese-based Kling's text to video: <a class="link" href="https://klingai.com/" target="_blank" rel="noopener">klingai.com</a></p>
-            <p>My Prompt was: "A boy walking on the Moon wearing shorts and a t-shirt. The Earth is in the background."</p>
-            <figure class="post-figure">
-                <img src="images/moon.jpg" alt="Kling AI text-to-video generation of boy walking on the Moon" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_while-we-continue-to-wait-for-openai-to-release-activity-7224022097998585856-MHV1" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">July 2024</div>
-        <h2 class="post-title">Claude's Artifacts Feature</h2>
-        <div class="post-body">
-            <p>If you haven't yet, try using Claude's Artifacts feature. It's available on the free version, but might need to be enabled. Start your own or try out this quiz I made after watching <a class="link" href="https://lnkd.in/grfQTZgm" target="_blank" rel="noopener">Trish Uhl, PMP's video</a>.</p>
-            <p>Be sure to click "Remix" on the bottom right to customize it. Ask Claude to switch the topic, the language, paste in your own questions, etc.</p>
-            <p>I've found a few directories, but there aren't too many on there yet: <a class="link" href="https://claudeartifacts.com" target="_blank" rel="noopener">claudeartifacts.com</a></p>
-            <figure class="post-figure">
-                <img src="images/trish.jpg" alt="Claude Artifacts quiz example" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_learningai-claudeartifacts-learningengineering-activity-7222242095191748609-ihIE" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-    <article class="post">
-        <div class="post-date">July 2024</div>
-        <h2 class="post-title">AI Agents Demo</h2>
-        <div class="post-body">
-            <p>AI Agents Demo. Using multiple chatbots as a team to achieve a goal rather than using one to complete a simple task.</p>
-            <figure class="post-figure">
-                <img src="images/trish2.jpg" alt="AI agents demo using multiple chatbots as a team" loading="lazy">
-            </figure>
-        </div>
-        <a class="post-cta" href="https://www.linkedin.com/posts/conzolo-migliozzi-152b30b_ai-agents-demo-using-multiple-chatbots-as-activity-7219924370100498433-Y0y0" target="_blank" rel="noopener">View on LinkedIn<span class="arrow">→</span></a>
-        <div class="post-divider"><span class="post-divider-dot"></span></div>
-    </article>
-
-</main>
+    <div class="see-all">
+        <a class="post-cta" href="thoughts.html">See all thoughts<span class="arrow">→</span></a>
+    </div>
+</section>
 
 <footer class="frame">
     <span>&copy; 2026 Running Start AI</span>
