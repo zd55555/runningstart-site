@@ -267,6 +267,35 @@ a.link:hover {
     border-bottom-color: var(--pop);
 }
 
+/* ---- REPOST CARD ---- */
+.repost-card {
+    margin-top: 1.25rem;
+    padding: 1.15rem 1.25rem;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 4px 4px 0;
+}
+
+.repost-author {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.repost-meta {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: var(--text-quiet);
+    margin-bottom: 0.6rem;
+}
+
+.repost-card p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    margin-bottom: 0;
+}
+
 /* ---- LINK CARD (preview style) ---- */
 .link-card {
     display: block;
