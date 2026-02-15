@@ -178,6 +178,14 @@ a.link:hover {
     margin-bottom: 2rem;
 }
 
+.pensieve-intro {
+    font-size: 0.95rem;
+    color: var(--text-quiet);
+    font-style: italic;
+    margin-top: -1.25rem;
+    margin-bottom: 2.5rem;
+}
+
 .post {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
