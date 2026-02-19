@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactions / Running Start AI</title>
+    <meta name="description" content="Interactive exercises and scenario-based practice activities.">
+
+    <meta property="og:title" content="Interactions / Running Start AI">
+    <meta property="og:description" content="Interactive exercises and scenario-based practice activities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://runningstart.ai/interactions.html">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .interaction-card {
+            display: block;
+            padding: 1.5rem;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 1.25rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .interaction-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .interaction-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+        }
+        .interaction-card-desc {
+            font-size: 0.92rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .interaction-card-meta {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-quiet);
+        }
+        .interaction-embed {
+            margin-top: 2rem;
+        }
+        .interaction-embed iframe {
+            width: 100%;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+        .interaction-embed-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+        .interaction-embed-desc {
+            font-size: 0.95rem;
+            color: var(--text-mid);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-wrap">
+    <div class="frame">
+        <nav>
+            <a class="site-link" href="index.html" aria-label="Home"><svg class="home-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Running Start AI</a>
+            <div class="nav-links">
+                <a href="pensieve.html">Pensieve</a>
+                <a href="about.html">About</a>
+                <a href="hci.html">Research</a>
+                <a href="resources.html">Resources</a>
+            </div>
+        </nav>
+        <hr class="rule">
+    </div>
+</div>
+
+<main class="article frame">
+    <h1 class="article-title">Interactions</h1>
+    <div class="article-body">
+        <p>Scenario-based exercises you can try right here. Each one is self-contained. Pick one and work through it.</p>
+    </div>
+
+    <div class="interaction-embed">
+        <h2 class="interaction-embed-title">Validation Practice</h2>
+        <p class="interaction-embed-desc">Two resident scenarios that test how you respond to strong emotions. Choose a response, get feedback, and see the takeaways.</p>
+        <iframe src="interactions/validation-practice.html" height="600" loading="lazy" title="Validation Practice"></iframe>
+    </div>
+</main>
+
+<footer class="frame">
+    <span>&copy; 2026 Running Start AI</span>
+    <a href="https://www.linkedin.com/in/conzolo-migliozzi-152b30b/" target="_blank" rel="noopener">LinkedIn</a>
+</footer>
+
+<script>
+    // Auto-resize iframes to fit their content
+    window.addEventListener('message', function(e) {
+        if (e.data && e.data.type === 'resize') {
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(function(iframe) {
+                if (iframe.contentWindow === e.source) {
+                    iframe.style.height = e.data.height + 'px';
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

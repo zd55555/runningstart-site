@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Practice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #1f2937;
+            background: #f8f9fa;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        /* Header bar */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .progress-text {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Scenario box */
+        .scenario-box {
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            border-left: 4px solid #8A2432;
+        }
+        .scenario-setup {
+            color: #4b5563;
+            margin-bottom: 10px;
+        }
+        .resident-quote {
+            font-weight: 600;
+            color: #1f2937;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            border-left: 3px solid #9ca3af;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 8px;
+        }
+        .scenario-note {
+            color: #6b7280;
+            font-style: italic;
+        }
+        /* Options */
+        .options-container {
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        .options-prompt {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1.4;
+            transition: all 0.15s;
+            font-family: inherit;
+            color: #1f2937;
+        }
+        .option-btn:last-child {
+            margin-bottom: 0;
+        }
+        .option-btn:hover:not(:disabled) {
+            border-color: #14b8a6;
+            background: #f0fdfa;
+        }
+        /* Feedback display */
+        .feedback-container {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .feedback-container.show {
+            display: block;
+        }
+        .feedback-box {
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        .feedback-box.correct {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+        }
+        .feedback-box.partial {
+            background: #fefce8;
+            border: 2px solid #fde047;
+        }
+        .feedback-box.incorrect {
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+        }
+        .feedback-label {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .feedback-box.correct .feedback-label {
+            color: #16a34a;
+        }
+        .feedback-box.partial .feedback-label {
+            color: #ca8a04;
+        }
+        .feedback-box.incorrect .feedback-label {
+            color: #dc2626;
+        }
+        .feedback-text {
+            color: #374151;
+        }
+        /* Navigation */
+        .nav-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #14b8a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s;
+        }
+        .nav-btn:hover {
+            background: #0d9488;
+        }
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .btn-row .nav-btn {
+            flex: 1;
+        }
+        .nav-btn.secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+        .nav-btn.secondary:hover {
+            background: #d1d5db;
+        }
+        /* Takeaways panel */
+        .takeaways-card {
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
+        }
+        .takeaways-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #8A2432;
+            margin-bottom: 14px;
+        }
+        .takeaway-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            gap: 10px;
+        }
+        .takeaway-item:last-child {
+            border-bottom: none;
+        }
+        .takeaway-check {
+            color: #14b8a6;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .takeaway-item strong {
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Question 1 -->
+        <div class="section active" id="q1">
+            <div class="header">
+                <span class="progress-text">Scenario 1 of 2</span>
+            </div>
+            <div class="scenario-box">
+                <p class="scenario-setup">Mr. Williams stops you in the hallway, visibly agitated, voice raised.</p>
+                <p class="resident-quote">"Someone stole my wallet! I know I had it this morning. One of you took it!"</p>
+            </div>
+            <div class="options-container" id="q1-options">
+                <p class="options-prompt">How would you respond?</p>
+                <button class="option-btn" onclick="handleAnswer('q1', 0)">A. "Nobody here would steal from you. It's probably in your room somewhere."</button>
+                <button class="option-btn" onclick="handleAnswer('q1', 1)">B. "That's really frustrating. Let's look for it together."</button>
+                <button class="option-btn" onclick="handleAnswer('q1', 2)">C. "I'll report this to the charge nurse right away."</button>
+                <button class="option-btn" onclick="handleAnswer('q1', 3)">D. "Where did you have it last? Try to remember."</button>
+            </div>
+            <div class="feedback-container" id="q1-feedback"></div>
+        </div>
+        <!-- Question 2 -->
+        <div class="section" id="q2">
+            <div class="header">
+                <span class="progress-text">Scenario 2 of 2</span>
+            </div>
+            <div class="scenario-box">
+                <p class="scenario-setup">You find Mrs. Chen sitting alone by the window, crying quietly. She looks up when you approach.</p>
+                <p class="resident-quote">"I just want to go home. I don't belong here."</p>
+            </div>
+            <div class="options-container" id="q2-options">
+                <p class="options-prompt">How would you respond?</p>
+                <button class="option-btn" onclick="handleAnswer('q2', 0)">A. "This is your home now. You've been here for months."</button>
+                <button class="option-btn" onclick="handleAnswer('q2', 1)">B. "I'm sorry you're feeling this way. What do you miss most about home?"</button>
+                <button class="option-btn" onclick="handleAnswer('q2', 2)">C. "A lot of residents feel that way. It gets easier with time."</button>
+                <button class="option-btn" onclick="handleAnswer('q2', 3)">D. "Let's go to the activity room. Bingo is starting, and it'll cheer you up."</button>
+            </div>
+            <div class="feedback-container" id="q2-feedback"></div>
+        </div>
+        <!-- Takeaways -->
+        <div class="section" id="takeaways">
+            <div class="header">
+                <span class="progress-text">Key Takeaways</span>
+            </div>
+            <div class="takeaways-card">
+                <h2 class="takeaways-title">Remember</h2>
+                <div class="takeaway-item">
+                    <span class="takeaway-check">✓</span>
+                    <span><strong>Name the emotion.</strong> "That sounds frustrating" or "I can see you're upset" goes a long way.</span>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-check">✓</span>
+                    <span><strong>Ask, don't argue.</strong> "Tell me more" creates connection. Correcting facts creates conflict.</span>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-check">✓</span>
+                    <span><strong>Skip "don't worry."</strong> It rarely helps. Acknowledging the worry does.</span>
+                </div>
+                <div class="takeaway-item">
+                    <span class="takeaway-check">✓</span>
+                    <span><strong>You can't fix everything.</strong> Sometimes just being present and listening is enough.</span>
+                </div>
+            </div>
+            <button class="nav-btn secondary" onclick="retakeAll()">↺ Retake Scenarios</button>
+        </div>
+    </div>
+    <script>
+        const attempted = { q1: false, q2: false };
+        const answerData = {
+            q1: {
+                correct: 1,
+                feedback: [
+                    { type: "incorrect", label: "Not quite.", text: "Saying \"nobody stole it\" tells him his feelings are wrong. Even if you want to help, he won't feel heard. Try naming his emotion first." },
+                    { type: "correct", label: "Yes.", text: "You name his frustration first, then offer to help. This often calms people down because they feel believed." },
+                    { type: "partial", label: "Almost.", text: "Reporting it right away might make him feel like you're handing him off to someone else. Try saying how he feels first, then offer to help." },
+                    { type: "incorrect", label: "Not quite.", text: "Asking him to remember puts pressure on him, which can make him more upset. Try naming his emotion first." }
+                ],
+                next: "q2"
+            },
+            q2: {
+                correct: 1,
+                feedback: [
+                    { type: "incorrect", label: "Not quite.", text: "This is true, but it brushes off her feelings. She may feel more alone, not less. Try asking about her feelings instead." },
+                    { type: "correct", label: "Yes.", text: "You show you care about her sadness, then invite her to share. This helps her feel heard and less alone." },
+                    { type: "partial", label: "Almost.", text: "Saying \"a lot of people feel that way\" can make her feel like just another resident. Try acknowledging her sadness and asking what she misses." },
+                    { type: "incorrect", label: "Not quite.", text: "Trying to distract her skips over her sadness. She may feel like her feelings don't matter. Try asking about them first." }
+                ],
+                next: "takeaways"
+            }
+        };
+        function handleAnswer(questionId, selectedIndex) {
+            const data = answerData[questionId];
+            const isCorrect = selectedIndex === data.correct;
+            const feedback = data.feedback[selectedIndex];
+            attempted[questionId] = true;
+            document.getElementById(`${questionId}-options`).style.display = 'none';
+            let feedbackHTML = `
+                <div class="feedback-box ${feedback.type}">
+                    <p class="feedback-label">${feedback.label}</p>
+                    <p class="feedback-text">${feedback.text}</p>
+                </div>
+            `;
+            if (isCorrect) {
+                feedbackHTML += `
+                    <button class="nav-btn" onclick="goTo('${data.next}')" style="margin-top: 12px;">Continue →</button>
+                `;
+            } else {
+                feedbackHTML += `
+                    <div class="btn-row">
+                        <button class="nav-btn secondary" onclick="retryQuestion('${questionId}')">↺ Retry</button>
+                        <button class="nav-btn" onclick="goTo('${data.next}')">Continue →</button>
+                    </div>
+                `;
+            }
+            const feedbackContainer = document.getElementById(`${questionId}-feedback`);
+            feedbackContainer.innerHTML = feedbackHTML;
+            feedbackContainer.classList.add('show');
+        }
+        function goTo(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        function retryQuestion(questionId) {
+            document.getElementById(`${questionId}-options`).style.display = 'block';
+            document.getElementById(`${questionId}-feedback`).classList.remove('show');
+            document.getElementById(`${questionId}-feedback`).innerHTML = '';
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+        function retakeAll() {
+            attempted.q1 = false;
+            attempted.q2 = false;
+            ['q1', 'q2'].forEach(qId => {
+                document.getElementById(`${qId}-options`).style.display = 'block';
+                document.getElementById(`${qId}-feedback`).classList.remove('show');
+                document.getElementById(`${qId}-feedback`).innerHTML = '';
+            });
+            goTo('q1');
+        }
+        // Tell parent frame our height so it can resize the iframe
+        function notifyHeight() {
+            if (window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'resize',
+                    height: document.body.scrollHeight + 32
+                }, '*');
+            }
+        }
+        // Send height on load and after any interaction
+        window.addEventListener('load', notifyHeight);
+        new MutationObserver(notifyHeight).observe(document.body, { childList: true, subtree: true, attributes: true });
+    </script>
+</body>
+</html>
