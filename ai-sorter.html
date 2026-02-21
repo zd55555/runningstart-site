@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Task Sorter / Running Start AI</title>
+    <meta name="description" content="How well do you know when to use AI? Sort everyday tasks into the right category and test your intuition.">
+
+    <meta property="og:title" content="AI Task Sorter / Running Start AI">
+    <meta property="og:description" content="How well do you know when to use AI? An interactive exercise to test your intuition about human-AI collaboration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://runningstart.ai/ai-sorter.html">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ---- SORTER PAGE STYLES ---- */
+
+        .sorter-hero {
+            text-align: center;
+            padding: 3.5rem 0 1rem;
+            animation: arrive 0.6s ease-out both;
+        }
+
+        .sorter-hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .sorter-hero .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ---- INSTRUCTIONS ---- */
+        .instructions {
+            text-align: center;
+            padding: 0.75rem 0 1.75rem;
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-quiet);
+            animation: arrive 0.6s ease-out 0.1s both;
+        }
+
+        .instructions kbd {
+            display: inline-block;
+            padding: 0.1em 0.45em;
+            font-family: inherit;
+            font-size: 0.78rem;
+            border: 1px solid var(--rule);
+            border-radius: 3px;
+            background: #fff;
+            color: var(--text-mid);
+            box-shadow: 0 1px 0 var(--rule);
+        }
+
+        /* ---- CARD TRAY ---- */
+        .card-tray {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            justify-content: center;
+            padding: 1.25rem 0 2rem;
+            min-height: 60px;
+            animation: arrive 0.6s ease-out 0.15s both;
+        }
+
+        .task-card {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            background: #fff;
+            border: 1px solid var(--rule);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.25s ease,
+                        border-color 0.2s ease,
+                        opacity 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            position: relative;
+            touch-action: none;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.06);
+            border-color: var(--accent);
+        }
+
+        .task-card:active,
+        .task-card.dragging {
+            cursor: grabbing;
+            transform: scale(1.05) rotate(1.5deg);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08);
+            border-color: var(--accent);
+            z-index: 1000;
+            opacity: 0.92;
+        }
+
+        .task-card.ghost {
+            opacity: 0.25;
+            transform: scale(0.95);
+        }
+
+        .task-card:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .task-card.picked-up {
+            outline: 2px solid var(--pop);
+            outline-offset: 2px;
+            animation: cardPulse 1.5s ease infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(189, 90, 48, 0.3); }
+            50% { box-shadow: 0 0 0 6px rgba(189, 90, 48, 0); }
+        }
+
+        /* ---- DROP ZONES ---- */
+        .zones-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            padding-bottom: 2rem;
+            animation: arrive 0.6s ease-out 0.2s both;
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--rule);
+            border-radius: 12px;
+            padding: 1.25rem 0.75rem 1rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: border-color 0.3s ease,
+                        background-color 0.3s ease,
+                        box-shadow 0.3s ease,
+                        transform 0.2s ease;
+        }
+
+        .drop-zone.drag-over {
+            border-color: var(--accent);
+            background: rgba(74, 93, 122, 0.04);
+            box-shadow: 0 0 0 4px rgba(74, 93, 122, 0.08);
+            transform: scale(1.01);
+        }
+
+        .drop-zone.drag-over.zone-ai {
+            border-color: var(--accent);
+            background: rgba(74, 93, 122, 0.06);
+            box-shadow: 0 0 0 4px rgba(74, 93, 122, 0.1);
+        }
+
+        .drop-zone.drag-over.zone-human {
+            border-color: var(--pop);
+            background: rgba(189, 90, 48, 0.04);
+            box-shadow: 0 0 0 4px rgba(189, 90, 48, 0.08);
+        }
+
+        .drop-zone.drag-over.zone-together {
+            border-color: #6b8e5a;
+            background: rgba(107, 142, 90, 0.04);
+            box-shadow: 0 0 0 4px rgba(107, 142, 90, 0.08);
+        }
+
+        .zone-label {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .zone-ai .zone-label {
+            color: var(--accent);
+            background: var(--accent-soft);
+        }
+
+        .zone-human .zone-label {
+            color: var(--pop);
+            background: rgba(189, 90, 48, 0.1);
+        }
+
+        .zone-together .zone-label {
+            color: #5a7d4a;
+            background: rgba(107, 142, 90, 0.1);
+        }
+
+        .zone-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.35rem;
+            opacity: 0.45;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            line-height: 1;
+        }
+
+        .drop-zone.drag-over .zone-icon {
+            opacity: 0.7;
+            transform: scale(1.15);
+        }
+
+        .zone-hint {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-quiet);
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .drop-zone.has-cards .zone-hint {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .zone-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0 0.25rem;
+        }
+
+        .zone-cards .task-card {
+            width: 100%;
+            text-align: center;
+            font-size: 0.82rem;
+            padding: 0.5rem 0.65rem;
+        }
+
+        /* ---- CHECK BUTTON ---- */
+        .check-area {
+            text-align: center;
+            padding: 0 0 2.5rem;
+            animation: arrive 0.4s ease-out both;
+        }
+
+        .check-btn {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            padding: 0.85rem 2.5rem;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(74, 93, 122, 0.25);
+        }
+
+        .check-btn:hover {
+            background: #3d4f68;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(74, 93, 122, 0.3);
+        }
+
+        .check-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(74, 93, 122, 0.2);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-text {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-quiet);
+            margin-bottom: 0.75rem;
+        }
+
+        /* ---- RESULTS ---- */
+        .results-section {
+            padding: 0 0 2.5rem;
+            animation: arrive 0.5s ease-out both;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem 0 2.5rem;
+        }
+
+        .score-ring {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.25rem;
+        }
+
+        .score-ring svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .score-ring-bg {
+            fill: none;
+            stroke: var(--rule);
+            stroke-width: 6;
+        }
+
+        .score-ring-fill {
+            fill: none;
+            stroke: var(--pop);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 377;
+            stroke-dashoffset: 377;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .score-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .score-label {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-mid);
+        }
+
+        .score-sublabel {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.82rem;
+            color: var(--text-quiet);
+            margin-top: 0.25rem;
+        }
+
+        /* Results cards */
+        .results-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .result-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            padding: 1rem 1.15rem;
+            border-radius: 8px;
+            border: 1px solid var(--rule);
+            background: #fff;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .result-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-card.correct {
+            border-color: rgba(107, 142, 90, 0.3);
+            background: rgba(107, 142, 90, 0.03);
+        }
+
+        .result-card.wrong {
+            border-color: rgba(189, 90, 48, 0.25);
+            background: rgba(189, 90, 48, 0.03);
+            animation: gentleShake 0.5s ease 0.3s both;
+        }
+
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            20% { transform: translateX(-4px) translateY(0); }
+            40% { transform: translateX(4px) translateY(0); }
+            60% { transform: translateX(-2px) translateY(0); }
+            80% { transform: translateX(2px) translateY(0); }
+        }
+
+        .result-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            margin-top: 0.1rem;
+        }
+
+        .result-card.correct .result-icon {
+            background: rgba(107, 142, 90, 0.12);
+            color: #5a7d4a;
+        }
+
+        .result-card.wrong .result-icon {
+            background: rgba(189, 90, 48, 0.12);
+            color: var(--pop);
+        }
+
+        .result-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .result-task {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+
+        .result-placement {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-quiet);
+            margin-bottom: 0.35rem;
+        }
+
+        .result-explanation {
+            font-size: 0.88rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+
+        /* ---- CTA ---- */
+        .cta-section {
+            text-align: center;
+            padding: 1.5rem 0 2rem;
+            animation: arrive 0.5s ease-out both;
+        }
+
+        .cta-section p {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            margin-bottom: 0.85rem;
+        }
+
+        .cta-link {
+            display: inline-block;
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 0.7rem 1.75rem;
+            border: 1.5px solid var(--accent);
+            border-radius: 8px;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+        }
+
+        .cta-link:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .cta-link .arrow {
+            display: inline-block;
+            margin-left: 0.35em;
+            transition: margin-left 0.2s ease;
+        }
+
+        .cta-link:hover .arrow {
+            margin-left: 0.6em;
+        }
+
+        /* ---- RESET BUTTON ---- */
+        .reset-btn {
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-quiet);
+            background: none;
+            border: 1px solid var(--rule);
+            border-radius: 6px;
+            padding: 0.55rem 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            margin-top: 0.75rem;
+        }
+
+        .reset-btn:hover {
+            color: var(--text);
+            border-color: var(--text-quiet);
+        }
+
+        /* ---- CONFETTI CANVAS ---- */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ---- HIDDEN STATE ---- */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 700px) {
+            .sorter-hero h1 { font-size: 1.6rem; }
+            .sorter-hero .subtitle { font-size: 0.95rem; }
+
+            .zones-container {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .drop-zone {
+                min-height: 80px;
+                padding: 1rem 0.75rem;
+            }
+
+            .zone-icon {
+                font-size: 1.35rem;
+            }
+
+            .card-tray {
+                gap: 0.5rem;
+            }
+
+            .task-card {
+                font-size: 0.82rem;
+                padding: 0.5rem 0.85rem;
+            }
+
+            .score-ring {
+                width: 120px;
+                height: 120px;
+            }
+
+            .score-number {
+                font-size: 1.8rem;
+            }
+
+            .instructions {
+                display: none;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .sorter-hero { padding-top: 2.5rem; }
+            .sorter-hero h1 { font-size: 1.4rem; }
+        }
+
+        /* ---- TOUCH DRAG CLONE ---- */
+        .drag-clone {
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            font-family: 'Hanken Grotesk', system-ui, sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text);
+            background: #fff;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15), 0 4px 8px rgba(0,0,0,0.1);
+            transform: scale(1.06) rotate(1.5deg);
+            opacity: 0.95;
+            white-space: nowrap;
+        }
+
+        /* ---- NAV CURRENT PAGE ---- */
+        nav .nav-links a.current {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ---- SMOOTH STATE TRANSITIONS ---- */
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="frame">
+    <nav>
+        <a class="site-link" href="index.html">Running Start AI</a>
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="hci.html">Research</a>
+            <a href="ai-sorter.html" class="current">Try It</a>
+            <a href="resources.html">Resources</a>
+        </div>
+    </nav>
+    <hr class="rule">
+</div>
+
+<main class="frame">
+
+    <!-- Hero -->
+    <section class="sorter-hero">
+        <h1>How well do you know when to use AI?</h1>
+        <p class="subtitle">Drag each task into the category where it belongs. Some are obvious. Some aren't.</p>
+    </section>
+
+    <!-- Keyboard instructions (desktop only) -->
+    <div class="instructions">
+        <kbd>Tab</kbd> to select a card, <kbd>Enter</kbd> to pick up, <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> to choose a zone
+    </div>
+
+    <!-- Game area -->
+    <div id="game-area">
+
+        <!-- Card tray -->
+        <div class="card-tray" id="card-tray" role="list" aria-label="Task cards to sort"></div>
+
+        <!-- Drop zones -->
+        <div class="zones-container" id="zones-container">
+            <div class="drop-zone zone-ai" id="zone-ai" data-zone="ai"
+                 role="region" aria-label="AI Excels drop zone">
+                <span class="zone-icon" aria-hidden="true">&#9881;</span>
+                <span class="zone-label">AI Excels</span>
+                <span class="zone-hint">Drop tasks here</span>
+                <div class="zone-cards" id="zone-ai-cards"></div>
+            </div>
+            <div class="drop-zone zone-human" id="zone-human" data-zone="human"
+                 role="region" aria-label="Humans Excel drop zone">
+                <span class="zone-icon" aria-hidden="true">&#9829;</span>
+                <span class="zone-label">Humans Excel</span>
+                <span class="zone-hint">Drop tasks here</span>
+                <div class="zone-cards" id="zone-human-cards"></div>
+            </div>
+            <div class="drop-zone zone-together" id="zone-together" data-zone="together"
+                 role="region" aria-label="Best Together drop zone">
+                <span class="zone-icon" aria-hidden="true">&#10042;</span>
+                <span class="zone-label">Best Together</span>
+                <span class="zone-hint">Drop tasks here</span>
+                <div class="zone-cards" id="zone-together-cards"></div>
+            </div>
+        </div>
+
+        <!-- Check button area -->
+        <div class="check-area" id="check-area">
+            <div class="progress-text" id="progress-text">0 of 10 placed</div>
+            <button class="check-btn" id="check-btn" disabled>Check My Answers</button>
+        </div>
+
+    </div>
+
+    <!-- Results (hidden initially) -->
+    <div id="results-area" class="hidden">
+        <div class="results-section">
+            <div class="score-display">
+                <div class="score-ring">
+                    <svg viewBox="0 0 128 128">
+                        <circle class="score-ring-bg" cx="64" cy="64" r="60"/>
+                        <circle class="score-ring-fill" id="score-ring-fill" cx="64" cy="64" r="60"/>
+                    </svg>
+                    <div class="score-number" id="score-number">0</div>
+                </div>
+                <div class="score-label" id="score-label"></div>
+                <div class="score-sublabel" id="score-sublabel"></div>
+            </div>
+            <div class="results-grid" id="results-grid"></div>
+            <div style="text-align:center; margin-top:1.5rem;">
+                <button class="reset-btn" id="reset-btn">Try Again</button>
+            </div>
+        </div>
+
+        <hr class="rule">
+
+        <div class="cta-section">
+            <p>The line between human and AI strengths is blurrier than most people think.</p>
+            <a class="cta-link" href="hci.html">Read the research <span class="arrow">&#8594;</span></a>
+        </div>
+    </div>
+
+</main>
+
+<canvas id="confetti-canvas"></canvas>
+
+<footer class="frame">
+    <span>&copy; 2026 Running Start AI</span>
+    <a href="https://www.linkedin.com/in/conzolo-migliozzi-152b30b/" target="_blank" rel="noopener">LinkedIn</a>
+</footer>
+
+<script>
+(function() {
+    'use strict';
+
+    // ========== TASK DATA ==========
+    const TASKS = [
+        {id:1, label:"Detecting cancer in medical scans", category:"ai", explanation:"AI matches or outperforms radiologists at spotting certain cancers in imaging, including breast and lung. It catches subtle patterns across millions of scans that human eyes miss. The diagnosis conversation still needs a doctor, but the detection itself is where AI already wins."},
+        {id:2, label:"Translating a restaurant menu abroad", category:"ai", explanation:"Point your phone at a menu in Tokyo or Barcelona and you get an accurate translation in seconds. For straightforward, concrete text like menus, signs, and product labels, AI translation is fast, reliable, and good enough that a human translator adds almost nothing."},
+        {id:3, label:"Flagging a fraudulent credit card charge", category:"ai", explanation:"Your bank processes millions of transactions per second. AI spots the one that doesn't fit your pattern before you even check your phone. Humans couldn't do this at any scale, let alone in real time."},
+        {id:4, label:"Knowing when a coworker needs help", category:"human", explanation:"You notice someone's been quiet in meetings. Their replies are shorter than usual. None of this shows up in data. It's years of social context, body language, and relationship history compressed into a gut feeling. AI has no access to any of it."},
+        {id:5, label:"Deciding to cancel a community event", category:"human", explanation:"The weather is borderline. Attendance will be low. But the organizer just lost a family member. This decision lives at the intersection of logistics, relationships, politics, and morale. No amount of data analysis replaces the judgment of someone who knows the people involved."},
+        {id:6, label:"Teaching a toddler to share", category:"human", explanation:"This requires reading a child's emotional state in real time, modeling behavior physically, knowing when to push and when to back off. It's embodied, relational, and deeply contextual. AI can suggest strategies. It can't sit on the floor and guide a two-year-old through a meltdown over a toy truck."},
+        {id:7, label:"Writing a tough email to your boss", category:"together", explanation:"AI is surprisingly good at drafting professional emails with the right tone and structure. But you know what your boss actually responds to, what context they're missing, and what to leave unsaid. The best version comes from AI generating a solid draft and you reshaping it with everything you know about the relationship."},
+        {id:8, label:"Planning a major career change", category:"together", explanation:"AI can research salaries, map skill gaps, find job postings, and identify trends you'd miss on your own. But it can't weigh how much you hate Sunday nights, whether you'd take a pay cut for meaning, or what your family can absorb. The research is better with AI. The decision is yours."},
+        {id:9, label:"Fixing a bug in a software project", category:"together", explanation:"AI scans thousands of lines of code in seconds and spots patterns that take developers hours to find. But understanding why the code was written that way and whether the fix breaks something else requires a human who knows the project. AI finds candidates. Humans decide what correct means."},
+        {id:10, label:"Creating a lesson plan for struggling students", category:"together", explanation:"AI generates solid lesson structures, finds resources, and aligns to standards faster than any teacher alone. But the teacher knows that Marcus shuts down when called on publicly, that Aisha learns best through drawing, and that the whole class is distracted because of yesterday's fire drill. The structure comes from AI. The humanity comes from the teacher."}
+    ];
+
+    const ZONE_NAMES = {
+        ai: 'AI Excels',
+        human: 'Humans Excel',
+        together: 'Best Together'
+    };
+
+    const SCORE_MESSAGES = [
+        { min: 10, label: 'Perfect score.', sub: 'You nailed every single one.' },
+        { min: 8, label: 'Strong intuition.', sub: 'You have a solid read on where AI fits.' },
+        { min: 6, label: 'Good instincts.', sub: 'A few surprises in there, though.' },
+        { min: 4, label: 'Room to explore.', sub: 'The boundaries are blurrier than they look.' },
+        { min: 0, label: 'Interesting results.', sub: 'These categories trip most people up.' }
+    ];
+
+    // ========== STATE ==========
+    let placements = {};   // taskId -> zoneId
+    let shuffledTasks = [];
+    let pickedUpCardId = null;  // for keyboard interaction
+
+    // ========== DOM REFS ==========
+    const cardTray = document.getElementById('card-tray');
+    const checkBtn = document.getElementById('check-btn');
+    const checkArea = document.getElementById('check-area');
+    const progressText = document.getElementById('progress-text');
+    const gameArea = document.getElementById('game-area');
+    const resultsArea = document.getElementById('results-area');
+    const resultsGrid = document.getElementById('results-grid');
+    const scoreNumber = document.getElementById('score-number');
+    const scoreLabel = document.getElementById('score-label');
+    const scoreSublabel = document.getElementById('score-sublabel');
+    const scoreRingFill = document.getElementById('score-ring-fill');
+    const resetBtn = document.getElementById('reset-btn');
+    const confettiCanvas = document.getElementById('confetti-canvas');
+
+    const zones = {
+        ai: document.getElementById('zone-ai'),
+        human: document.getElementById('zone-human'),
+        together: document.getElementById('zone-together')
+    };
+
+    const zoneCards = {
+        ai: document.getElementById('zone-ai-cards'),
+        human: document.getElementById('zone-human-cards'),
+        together: document.getElementById('zone-together-cards')
+    };
+
+    // ========== INIT ==========
+    function init() {
+        placements = {};
+        pickedUpCardId = null;
+        shuffledTasks = shuffle([...TASKS]);
+        renderCards();
+        updateProgress();
+        gameArea.classList.remove('hidden');
+        resultsArea.classList.add('hidden');
+        clearZoneCards();
+        setupDragAndDrop();
+        setupTouchDrag();
+        setupKeyboard();
+    }
+
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // ========== RENDER ==========
+    function renderCards() {
+        cardTray.innerHTML = '';
+        shuffledTasks.forEach(function(task, i) {
+            var card = document.createElement('div');
+            card.className = 'task-card';
+            card.textContent = task.label;
+            card.setAttribute('data-id', task.id);
+            card.setAttribute('draggable', 'true');
+            card.setAttribute('role', 'listitem');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', task.label + '. Press Enter to pick up, then 1 for AI, 2 for Humans, 3 for Together.');
+            card.style.animationDelay = (i * 0.04) + 's';
+            card.style.animation = 'arrive 0.4s ease-out both';
+            cardTray.appendChild(card);
+        });
+    }
+
+    function clearZoneCards() {
+        Object.values(zoneCards).forEach(function(el) { el.innerHTML = ''; });
+        Object.values(zones).forEach(function(z) { z.classList.remove('has-cards'); });
+    }
+
+    function updateProgress() {
+        var count = Object.keys(placements).length;
+        var total = TASKS.length;
+        progressText.textContent = count + ' of ' + total + ' placed';
+        checkBtn.disabled = count < total;
+    }
+
+    function moveCardToZone(taskId, zoneId) {
+        var task = TASKS.find(function(t) { return t.id === taskId; });
+        if (!task) return;
+
+        // Remove from previous location
+        var existing = document.querySelector('.task-card[data-id="' + taskId + '"]');
+        if (existing) existing.remove();
+
+        // Remove old placement
+        var oldZone = placements[taskId];
+        if (oldZone) {
+            delete placements[taskId];
+        }
+
+        // Create card in zone
+        var card = document.createElement('div');
+        card.className = 'task-card';
+        card.textContent = task.label;
+        card.setAttribute('data-id', task.id);
+        card.setAttribute('draggable', 'true');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('aria-label', task.label + ' in ' + ZONE_NAMES[zoneId] + '. Drag to move.');
+
+        // Entrance animation
+        card.style.animation = 'arrive 0.3s ease-out both';
+
+        zoneCards[zoneId].appendChild(card);
+        zones[zoneId].classList.add('has-cards');
+
+        placements[taskId] = zoneId;
+        updateProgress();
+
+        // Re-attach drag events to new card
+        attachDragToCard(card);
+        attachTouchToCard(card);
+    }
+
+    function moveCardToTray(taskId) {
+        var task = TASKS.find(function(t) { return t.id === taskId; });
+        if (!task) return;
+
+        var existing = document.querySelector('.task-card[data-id="' + taskId + '"]');
+        if (existing) existing.remove();
+
+        if (placements[taskId]) {
+            var oldZone = placements[taskId];
+            delete placements[taskId];
+            if (zoneCards[oldZone].children.length === 0) {
+                zones[oldZone].classList.remove('has-cards');
+            }
+        }
+
+        var card = document.createElement('div');
+        card.className = 'task-card';
+        card.textContent = task.label;
+        card.setAttribute('data-id', task.id);
+        card.setAttribute('draggable', 'true');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('aria-label', task.label + '. Press Enter to pick up, then 1 for AI, 2 for Humans, 3 for Together.');
+        card.style.animation = 'arrive 0.3s ease-out both';
+        cardTray.appendChild(card);
+
+        attachDragToCard(card);
+        attachTouchToCard(card);
+        updateProgress();
+    }
+
+    // ========== HTML5 DRAG AND DROP ==========
+    var draggedId = null;
+
+    function setupDragAndDrop() {
+        // Attach to initial cards
+        document.querySelectorAll('.task-card').forEach(attachDragToCard);
+
+        // Zone listeners
+        Object.keys(zones).forEach(function(zoneId) {
+            var zone = zones[zoneId];
+
+            zone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                zone.classList.add('drag-over');
+            });
+
+            zone.addEventListener('dragleave', function(e) {
+                if (!zone.contains(e.relatedTarget)) {
+                    zone.classList.remove('drag-over');
+                }
+            });
+
+            zone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                zone.classList.remove('drag-over');
+                if (draggedId !== null) {
+                    moveCardToZone(draggedId, zoneId);
+                    draggedId = null;
+                }
+            });
+        });
+
+        // Allow dropping back on tray
+        cardTray.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        });
+
+        cardTray.addEventListener('drop', function(e) {
+            e.preventDefault();
+            if (draggedId !== null) {
+                moveCardToTray(draggedId);
+                draggedId = null;
+            }
+        });
+    }
+
+    function attachDragToCard(card) {
+        card.addEventListener('dragstart', function(e) {
+            draggedId = parseInt(card.getAttribute('data-id'));
+            card.classList.add('ghost');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', draggedId);
+        });
+
+        card.addEventListener('dragend', function() {
+            card.classList.remove('ghost');
+            document.querySelectorAll('.drop-zone').forEach(function(z) {
+                z.classList.remove('drag-over');
+            });
+        });
+    }
+
+    // ========== TOUCH DRAG ==========
+    var touchDragData = null;
+    var touchClone = null;
+
+    function setupTouchDrag() {
+        document.querySelectorAll('.task-card').forEach(attachTouchToCard);
+    }
+
+    function attachTouchToCard(card) {
+        card.addEventListener('touchstart', handleTouchStart, { passive: false });
+    }
+
+    function handleTouchStart(e) {
+        if (e.touches.length !== 1) return;
+
+        var card = e.currentTarget;
+        var touch = e.touches[0];
+
+        var rect = card.getBoundingClientRect();
+        touchDragData = {
+            id: parseInt(card.getAttribute('data-id')),
+            offsetX: touch.clientX - rect.left,
+            offsetY: touch.clientY - rect.top,
+            startX: touch.clientX,
+            startY: touch.clientY,
+            moved: false,
+            sourceCard: card
+        };
+
+        // Bind move and end to document
+        document.addEventListener('touchmove', handleTouchMove, { passive: false });
+        document.addEventListener('touchend', handleTouchEnd, { passive: false });
+    }
+
+    function handleTouchMove(e) {
+        if (!touchDragData) return;
+        e.preventDefault();
+
+        var touch = e.touches[0];
+        var dx = touch.clientX - touchDragData.startX;
+        var dy = touch.clientY - touchDragData.startY;
+
+        // Require 8px movement to start drag
+        if (!touchDragData.moved && Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+
+        if (!touchDragData.moved) {
+            touchDragData.moved = true;
+            touchDragData.sourceCard.classList.add('ghost');
+
+            // Create floating clone
+            touchClone = document.createElement('div');
+            touchClone.className = 'drag-clone';
+            touchClone.textContent = touchDragData.sourceCard.textContent;
+            document.body.appendChild(touchClone);
+        }
+
+        // Position clone
+        touchClone.style.left = (touch.clientX - touchDragData.offsetX) + 'px';
+        touchClone.style.top = (touch.clientY - touchDragData.offsetY) + 'px';
+
+        // Highlight zone under finger
+        highlightZoneUnderPoint(touch.clientX, touch.clientY);
+    }
+
+    function handleTouchEnd(e) {
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+
+        if (!touchDragData) return;
+
+        if (touchDragData.moved) {
+            // Find zone under touch point
+            var touch = e.changedTouches[0];
+            var zone = getZoneUnderPoint(touch.clientX, touch.clientY);
+
+            if (zone) {
+                moveCardToZone(touchDragData.id, zone);
+            } else if (isTrayUnderPoint(touch.clientX, touch.clientY)) {
+                moveCardToTray(touchDragData.id);
+            } else {
+                touchDragData.sourceCard.classList.remove('ghost');
+            }
+
+            // Remove clone
+            if (touchClone) {
+                touchClone.remove();
+                touchClone = null;
+            }
+
+            // Clear zone highlights
+            Object.values(zones).forEach(function(z) { z.classList.remove('drag-over'); });
+        }
+
+        touchDragData = null;
+    }
+
+    function highlightZoneUnderPoint(x, y) {
+        Object.keys(zones).forEach(function(zoneId) {
+            var rect = zones[zoneId].getBoundingClientRect();
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                zones[zoneId].classList.add('drag-over');
+            } else {
+                zones[zoneId].classList.remove('drag-over');
+            }
+        });
+    }
+
+    function getZoneUnderPoint(x, y) {
+        var found = null;
+        Object.keys(zones).forEach(function(zoneId) {
+            var rect = zones[zoneId].getBoundingClientRect();
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                found = zoneId;
+            }
+        });
+        return found;
+    }
+
+    function isTrayUnderPoint(x, y) {
+        var rect = cardTray.getBoundingClientRect();
+        return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+    }
+
+    // ========== KEYBOARD ==========
+    function setupKeyboard() {
+        document.addEventListener('keydown', function(e) {
+            var focused = document.activeElement;
+
+            // If a card is focused and Enter is pressed, pick it up
+            if (focused && focused.classList.contains('task-card') && e.key === 'Enter') {
+                e.preventDefault();
+                var id = parseInt(focused.getAttribute('data-id'));
+
+                if (pickedUpCardId === id) {
+                    // Put it down
+                    pickedUpCardId = null;
+                    focused.classList.remove('picked-up');
+                    announceToSR('Card put down.');
+                } else {
+                    // Pick up
+                    if (pickedUpCardId !== null) {
+                        var prev = document.querySelector('.task-card.picked-up');
+                        if (prev) prev.classList.remove('picked-up');
+                    }
+                    pickedUpCardId = id;
+                    focused.classList.add('picked-up');
+                    announceToSR('Card picked up. Press 1 for AI Excels, 2 for Humans Excel, 3 for Best Together, or Escape to cancel.');
+                }
+                return;
+            }
+
+            // If card is picked up, number keys drop it in zone
+            if (pickedUpCardId !== null) {
+                var zoneMap = { '1': 'ai', '2': 'human', '3': 'together' };
+                if (zoneMap[e.key]) {
+                    e.preventDefault();
+                    var pickedCard = document.querySelector('.task-card.picked-up');
+                    if (pickedCard) pickedCard.classList.remove('picked-up');
+                    moveCardToZone(pickedUpCardId, zoneMap[e.key]);
+                    announceToSR('Placed in ' + ZONE_NAMES[zoneMap[e.key]] + '.');
+                    pickedUpCardId = null;
+
+                    // Focus next card in tray
+                    var nextCard = cardTray.querySelector('.task-card');
+                    if (nextCard) nextCard.focus();
+                    return;
+                }
+
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    var pickedCard2 = document.querySelector('.task-card.picked-up');
+                    if (pickedCard2) pickedCard2.classList.remove('picked-up');
+                    pickedUpCardId = null;
+                    announceToSR('Cancelled.');
+                    return;
+                }
+            }
+        });
+    }
+
+    // Screen reader announcements
+    var srAnnouncer = null;
+    function announceToSR(msg) {
+        if (!srAnnouncer) {
+            srAnnouncer = document.createElement('div');
+            srAnnouncer.setAttribute('aria-live', 'assertive');
+            srAnnouncer.setAttribute('aria-atomic', 'true');
+            srAnnouncer.style.position = 'absolute';
+            srAnnouncer.style.left = '-9999px';
+            srAnnouncer.style.width = '1px';
+            srAnnouncer.style.height = '1px';
+            srAnnouncer.style.overflow = 'hidden';
+            document.body.appendChild(srAnnouncer);
+        }
+        srAnnouncer.textContent = '';
+        setTimeout(function() { srAnnouncer.textContent = msg; }, 50);
+    }
+
+    // ========== CHECK ANSWERS ==========
+    checkBtn.addEventListener('click', function() {
+        if (Object.keys(placements).length < TASKS.length) return;
+        showResults();
+    });
+
+    function showResults() {
+        var correct = 0;
+        var results = [];
+
+        TASKS.forEach(function(task) {
+            var placed = placements[task.id];
+            var isCorrect = placed === task.category;
+            if (isCorrect) correct++;
+            results.push({
+                task: task,
+                placed: placed,
+                isCorrect: isCorrect
+            });
+        });
+
+        // Sort: wrong ones first (so the interesting ones are at top)
+        results.sort(function(a, b) {
+            if (a.isCorrect === b.isCorrect) return 0;
+            return a.isCorrect ? 1 : -1;
+        });
+
+        // Transition: fade out game, fade in results
+        gameArea.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        gameArea.style.opacity = '0';
+        gameArea.style.transform = 'translateY(-8px)';
+
+        setTimeout(function() {
+            gameArea.classList.add('hidden');
+            gameArea.style.opacity = '';
+            gameArea.style.transform = '';
+
+            resultsArea.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Animate score ring
+            animateScore(correct, TASKS.length);
+
+            // Build results grid
+            renderResults(results);
+
+            // Confetti on perfect score
+            if (correct === TASKS.length) {
+                setTimeout(function() { fireConfetti(); }, 800);
+            }
+        }, 400);
+    }
+
+    function animateScore(correct, total) {
+        var pct = correct / total;
+        var circumference = 2 * Math.PI * 60; // r=60
+        var offset = circumference * (1 - pct);
+
+        // Animate ring
+        setTimeout(function() {
+            scoreRingFill.style.strokeDashoffset = offset;
+        }, 100);
+
+        // Animate number counting up
+        var duration = 1200;
+        var start = performance.now();
+        function tick(now) {
+            var elapsed = now - start;
+            var progress = Math.min(elapsed / duration, 1);
+            // Ease out
+            var easedProgress = 1 - Math.pow(1 - progress, 3);
+            scoreNumber.textContent = Math.round(easedProgress * correct);
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                scoreNumber.textContent = correct;
+            }
+        }
+        requestAnimationFrame(tick);
+
+        // Score message
+        var msg = SCORE_MESSAGES.find(function(m) { return correct >= m.min; });
+        scoreLabel.textContent = msg.label;
+        scoreSublabel.textContent = msg.sub;
+    }
+
+    function renderResults(results) {
+        resultsGrid.innerHTML = '';
+        results.forEach(function(r, i) {
+            var card = document.createElement('div');
+            card.className = 'result-card ' + (r.isCorrect ? 'correct' : 'wrong');
+
+            var icon = document.createElement('div');
+            icon.className = 'result-icon';
+            icon.innerHTML = r.isCorrect ? '&#10003;' : '&#10007;';
+            icon.setAttribute('aria-hidden', 'true');
+
+            var content = document.createElement('div');
+            content.className = 'result-content';
+
+            var taskName = document.createElement('div');
+            taskName.className = 'result-task';
+            taskName.textContent = r.task.label;
+
+            var placement = document.createElement('div');
+            placement.className = 'result-placement';
+            if (r.isCorrect) {
+                placement.textContent = 'Correct: ' + ZONE_NAMES[r.task.category];
+            } else {
+                placement.textContent = 'You said ' + ZONE_NAMES[r.placed] + ' \u2192 Actually ' + ZONE_NAMES[r.task.category];
+            }
+
+            var explanation = document.createElement('div');
+            explanation.className = 'result-explanation';
+            explanation.textContent = r.task.explanation;
+
+            content.appendChild(taskName);
+            content.appendChild(placement);
+            content.appendChild(explanation);
+
+            card.appendChild(icon);
+            card.appendChild(content);
+            resultsGrid.appendChild(card);
+
+            // Stagger visibility
+            setTimeout(function() {
+                card.classList.add('visible');
+            }, 150 + i * 80);
+        });
+    }
+
+    // ========== CONFETTI ==========
+    function fireConfetti() {
+        var canvas = confettiCanvas;
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var particles = [];
+        var colors = ['#bd5a30', '#4a5d7a', '#6b8e5a', '#e4e8ee', '#faf9f6', '#d4956b'];
+
+        for (var i = 0; i < 120; i++) {
+            particles.push({
+                x: canvas.width / 2 + (Math.random() - 0.5) * 200,
+                y: canvas.height * 0.35,
+                vx: (Math.random() - 0.5) * 12,
+                vy: Math.random() * -14 - 4,
+                w: Math.random() * 8 + 4,
+                h: Math.random() * 6 + 2,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rotation: Math.random() * 360,
+                rotationSpeed: (Math.random() - 0.5) * 12,
+                gravity: 0.25 + Math.random() * 0.15,
+                opacity: 1
+            });
+        }
+
+        var frame = 0;
+        var maxFrames = 150;
+
+        function animate() {
+            if (frame > maxFrames) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                return;
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(function(p) {
+                p.x += p.vx;
+                p.vy += p.gravity;
+                p.y += p.vy;
+                p.vx *= 0.98;
+                p.rotation += p.rotationSpeed;
+
+                if (frame > maxFrames - 40) {
+                    p.opacity = Math.max(0, p.opacity - 0.03);
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+                ctx.globalAlpha = p.opacity;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+            });
+
+            frame++;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    }
+
+    // ========== RESET ==========
+    resetBtn.addEventListener('click', function() {
+        resultsArea.style.transition = 'opacity 0.3s ease';
+        resultsArea.style.opacity = '0';
+
+        setTimeout(function() {
+            resultsArea.style.opacity = '';
+            // Reset score ring
+            scoreRingFill.style.transition = 'none';
+            scoreRingFill.style.strokeDashoffset = 377;
+            setTimeout(function() {
+                scoreRingFill.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            }, 50);
+
+            init();
+        }, 350);
+    });
+
+    // ========== GO ==========
+    init();
+
+})();
+</script>
+
+</body>
+</html>

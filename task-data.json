@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "label": "Detecting cancer in medical scans",
+      "category": "ai",
+      "explanation": "AI matches or outperforms radiologists at spotting certain cancers in imaging, including breast and lung. It doesn't get tired, doesn't rush before lunch, and catches subtle patterns across millions of scans that human eyes miss. The diagnosis conversation still needs a doctor, but the detection itself is where AI already wins."
+    },
+    {
+      "id": 2,
+      "label": "Translating a restaurant menu abroad",
+      "category": "ai",
+      "explanation": "Point your phone at a menu in Tokyo or Barcelona and you'll get an accurate translation in seconds. For straightforward, concrete text like menus, signs, and product labels, AI translation is fast, reliable, and good enough that a human translator adds almost nothing. Poetry is a different story. Menus are not."
+    },
+    {
+      "id": 3,
+      "label": "Flagging a fraudulent credit card charge",
+      "category": "ai",
+      "explanation": "Your bank processes millions of transactions per second. AI spots the one that doesn't fit your pattern before you even check your phone. Humans couldn't do this at any scale, let alone in real time. The speed and pattern-matching combination makes this a pure AI strength."
+    },
+    {
+      "id": 4,
+      "label": "Knowing when a coworker needs help",
+      "category": "human",
+      "explanation": "You notice someone's been quiet in meetings. Their Slack replies are shorter than usual. They didn't laugh at the thing they'd normally laugh at. None of this shows up in data. It's years of social context, body language, and relationship history compressed into a gut feeling. AI has no access to any of it."
+    },
+    {
+      "id": 5,
+      "label": "Deciding to cancel a community event",
+      "category": "human",
+      "explanation": "The weather is borderline. Attendance will be low. But the organizer just lost a family member, and canceling might feel like one more thing falling apart. This decision lives at the intersection of logistics, relationships, politics, and morale. No amount of data analysis replaces the judgment of someone who knows the people involved."
+    },
+    {
+      "id": 6,
+      "label": "Teaching a toddler to share",
+      "category": "human",
+      "explanation": "This requires reading a child's emotional state in real time, modeling behavior physically, knowing when to push and when to back off, and adapting every 30 seconds. It's embodied, relational, and deeply contextual. AI can suggest strategies. It can't sit on the floor and gently guide a two-year-old through a meltdown over a toy truck."
+    },
+    {
+      "id": 7,
+      "label": "Writing a tough email to your boss",
+      "category": "together",
+      "explanation": "AI is surprisingly good at drafting professional emails with the right tone and structure. But you know what your boss actually responds to, what context they're missing, and what you should leave unsaid. The best version comes from AI generating a solid draft and you reshaping it with everything you know about the relationship."
+    },
+    {
+      "id": 8,
+      "label": "Planning a major career change",
+      "category": "together",
+      "explanation": "AI can research salaries, map skill gaps, find job postings, and identify trends you'd miss on your own. But it can't weigh how much you hate Sunday nights, whether you'd take a pay cut for meaning, or what your family situation can absorb. The research is better with AI. The decision is yours. You need both."
+    },
+    {
+      "id": 9,
+      "label": "Fixing a bug in a software project",
+      "category": "together",
+      "explanation": "AI scans thousands of lines of code in seconds and spots patterns that take developers hours to find. But understanding why the code was written that way, whether the 'fix' breaks something else, and what the system is actually supposed to do requires a human who knows the project. AI finds candidates. Humans decide what correct means."
+    },
+    {
+      "id": 10,
+      "label": "Creating a lesson plan for struggling students",
+      "category": "together",
+      "explanation": "AI generates solid lesson structures, finds relevant resources, and aligns to standards faster than any teacher can alone. But the teacher knows that Marcus shuts down when called on publicly, that Aisha learns best through drawing, and that the whole class is distracted because of yesterday's fire drill. The structure comes from AI. The humanity comes from the teacher."
+    }
+  ]
+}
