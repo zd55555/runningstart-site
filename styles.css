@@ -483,6 +483,20 @@ a.link:hover {
     display: block;
 }
 
+.article-figure-inline {
+    float: right;
+    width: 40%;
+    margin: 0.25rem 0 1rem 1.5rem;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.article-figure-inline img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* ---- TAKEAWAYS LIST ---- */
 .takeaways {
     list-style: none;
@@ -755,6 +769,11 @@ footer a:hover {
     .article-heading { font-size: 1.15rem; }
     .topic-grid { grid-template-columns: 1fr; }
     .path-grid { grid-template-columns: 1fr; }
+    .article-figure-inline {
+        float: none;
+        width: 100%;
+        margin: 1.25rem 0;
+    }
     footer {
         flex-direction: column;
         gap: 0.4rem;
