@@ -12,7 +12,13 @@
       "Bash(ls:*)",
       "Bash(nslookup:*)",
       "WebFetch(domain:thinking-with-machine-ah3elc6.gamma.site)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(python -c:*)",
+      "Bash(powershell:*)",
+      "Bash(git mv:*)",
+      "Bash(node:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git stash:*)"
     ]
   }
 }
