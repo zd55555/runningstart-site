@@ -34,55 +34,69 @@ body {
 
 /* ---- HERO / HEADER ---- */
 .hero {
-    /* SWAP THIS: Replace background-color with your image:
-       background: url('images/hero.jpg') center / cover no-repeat;
-    */
-    background-color: #3a4d68;
-    padding: 4.5rem 1.5rem 4rem;
+    background: linear-gradient(160deg, #263445 0%, #34495e 40%, #3e5872 100%);
+    padding: 5.5rem 1.5rem 5rem;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid var(--pop);
     animation: arrive 0.6s ease-out both;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 15% 80%, rgba(189, 90, 48, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 20%, rgba(255,255,255,0.04) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .hero-inner {
     max-width: var(--col);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .mark {
     font-family: 'Hanken Grotesk', system-ui, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 1.25rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
 }
 
 .bio {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #fff;
-    max-width: 520px;
+    max-width: 540px;
 }
 
 .hero-links {
-    margin-top: 1.15rem;
+    margin-top: 1.5rem;
     font-family: 'Hanken Grotesk', system-ui, sans-serif;
     font-size: 0.82rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1.25rem;
 }
 
 .hero-links a {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255,255,255,0.65);
     text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
     transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .hero-links a:hover {
     color: #fff;
-    border-bottom-color: rgba(255,255,255,0.6);
+    border-bottom-color: rgba(255,255,255,0.5);
 }
 
 /* ---- ACCENT BAR ---- */
@@ -648,10 +662,118 @@ a.link:hover {
 
 /* ---- PATH CARDS (homepage) ---- */
 .paths {
-    padding-top: 2.5rem;
-    padding-bottom: 1rem;
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
 }
 
+/* Featured card (Durable Skills) */
+.path-featured {
+    display: block;
+    padding: 2rem 2rem 1.75rem;
+    background: linear-gradient(135deg, #f7f3ee 0%, #f0ebe4 100%);
+    border-left: 4px solid var(--pop);
+    border-radius: 2px 8px 8px 2px;
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: arrive 0.6s ease-out 0.1s both;
+}
+
+.path-featured:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+}
+
+.path-label {
+    display: block;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pop);
+    margin-bottom: 0.5rem;
+}
+
+.path-featured .path-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.path-featured .path-description {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.path-featured .path-cta {
+    display: inline-block;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.path-featured .path-cta .arrow {
+    display: inline-block;
+    margin-left: 0.25em;
+    color: var(--pop);
+    transition: margin-left 0.2s ease;
+}
+
+.path-featured:hover .path-cta .arrow {
+    margin-left: 0.5em;
+}
+
+/* Three-column supporting cards */
+.path-grid-three {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.path-grid-three .path-card {
+    display: block;
+    padding: 1.5rem 1.25rem 1.25rem;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 6px 6px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-top-color 0.3s ease;
+    animation: arrive 0.6s ease-out both;
+}
+
+.path-grid-three .path-card:nth-child(1) { animation-delay: 0.15s; }
+.path-grid-three .path-card:nth-child(2) { animation-delay: 0.2s; }
+.path-grid-three .path-card:nth-child(3) { animation-delay: 0.25s; }
+
+.path-grid-three .path-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+    border-top-color: var(--pop);
+}
+
+.path-grid-three .path-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.01em;
+}
+
+.path-grid-three .path-description {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Legacy path styles (keep for compatibility) */
 .path-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -663,10 +785,6 @@ a.link:hover {
     border: 1px solid var(--rule);
     border-radius: 6px;
     animation: arrive 0.6s ease-out both;
-}
-
-.path-card:nth-child(2) {
-    animation-delay: 0.08s;
 }
 
 .path-title {
@@ -758,8 +876,11 @@ footer a:hover {
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 600px) {
-    .hero { padding: 3rem 1.25rem 3rem; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
     .bio { font-size: 1.1rem; }
+    .hero-links { gap: 0.75rem 1.25rem; }
+    .path-featured { padding: 1.5rem; }
+    .path-grid-three { grid-template-columns: 1fr; }
     .post-title { font-size: 1.28rem; }
     .post-body { font-size: 1rem; }
     .about-title { font-size: 1.6rem; }
