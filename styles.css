@@ -17,7 +17,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
     color: var(--text);
     background: var(--bg);
     line-height: 1.75;
@@ -70,7 +70,7 @@ body {
 }
 
 .bio {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.65;
     color: #fff;
@@ -127,6 +127,7 @@ body {
 }
 
 .page-banner-title {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 1.6rem;
     font-weight: 600;
     color: #fff;
@@ -294,6 +295,7 @@ a.link:hover {
 }
 
 .post-title {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 1.45rem;
     font-weight: 600;
     line-height: 1.35;
@@ -461,6 +463,7 @@ a.link:hover {
 }
 
 .about-title {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.3;
@@ -489,6 +492,7 @@ a.link:hover {
 }
 
 .article-title {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 2rem;
     font-weight: 600;
     line-height: 1.3;
@@ -513,6 +517,7 @@ a.link:hover {
 }
 
 .article-heading {
+    font-family: 'Newsreader', Georgia, serif;
     font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.35;
@@ -705,6 +710,63 @@ a.link:hover {
 .paths {
     padding-top: 3.5rem;
     padding-bottom: 4rem;
+}
+
+/* Wide bar card (Resources) */
+.path-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.15rem 1.5rem;
+    background: linear-gradient(135deg, #f7f3ee 0%, #f0ebe4 100%);
+    border-left: 4px solid var(--pop);
+    border-radius: 2px 8px 8px 2px;
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: arrive 0.6s ease-out 0.1s both;
+}
+
+.path-bar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+}
+
+.path-bar .path-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+
+.path-bar .path-description {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.path-bar .path-cta {
+    display: inline-block;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.path-bar .path-cta .arrow {
+    display: inline-block;
+    margin-left: 0.25em;
+    color: var(--pop);
+    transition: margin-left 0.2s ease;
+}
+
+.path-bar:hover .path-cta .arrow {
+    margin-left: 0.5em;
 }
 
 /* Featured card (Durable Skills) */
@@ -921,6 +983,13 @@ footer a:hover {
     .bio { font-size: 1.1rem; }
     .page-banner { padding: 1.5rem 1.25rem 1.25rem; }
     .page-banner-title { font-size: 1.35rem; }
+    .path-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1.15rem 1.25rem;
+    }
+    .path-bar .path-title { white-space: normal; }
     .path-featured { padding: 1.5rem; }
     .path-grid-three { grid-template-columns: 1fr; }
     .post-title { font-size: 1.28rem; }
