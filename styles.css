@@ -516,6 +516,12 @@ a.link:hover {
     font-style: italic;
 }
 
+.article-body .source-note {
+    font-size: 0.9rem;
+    color: var(--text-quiet);
+    line-height: 1.65;
+}
+
 .article-heading {
     font-family: 'Newsreader', Georgia, serif;
     font-size: 1.3rem;
