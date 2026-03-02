@@ -2,6 +2,8 @@
    Running Start AI - Shared Styles
    ============================================================ */
 
+html { scroll-behavior: smooth; }
+
 :root {
     --text: #1c1917;
     --text-mid: #44403c;
@@ -659,12 +661,83 @@ a.link:hover {
     letter-spacing: -0.01em;
 }
 
+/* Section nav (sticky pill bar) */
+.section-nav {
+    padding: 0.85rem 1.5rem;
+    background: var(--bg);
+    position: sticky;
+    top: 52px;
+    z-index: 90;
+    border-bottom: 1px solid var(--rule);
+}
+
+.section-nav-inner {
+    max-width: var(--col);
+    margin: 0 auto;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.75rem;
+}
+
+.section-nav a {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    color: var(--text-quiet);
+    text-decoration: none;
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+}
+
+.section-nav a[data-section="tools"] { color: var(--pop); border-color: rgba(189,90,48,0.3); }
+.section-nav a[data-section="informed"] { color: var(--accent); border-color: rgba(74,93,122,0.3); }
+.section-nav a[data-section="courses"] { color: #6b8e6b; border-color: rgba(107,142,107,0.3); }
+.section-nav a[data-section="educators"] { color: #8b7355; border-color: rgba(139,115,85,0.3); }
+.section-nav a[data-section="jobs"] { color: #7a6b8a; border-color: rgba(122,107,138,0.3); }
+
+.section-nav a:hover {
+    background: var(--accent-soft);
+}
+.section-nav a[data-section="tools"]:hover { background: rgba(189,90,48,0.08); border-color: var(--pop); }
+.section-nav a[data-section="informed"]:hover { background: rgba(74,93,122,0.08); border-color: var(--accent); }
+.section-nav a[data-section="courses"]:hover { background: rgba(107,142,107,0.08); border-color: #6b8e6b; }
+.section-nav a[data-section="educators"]:hover { background: rgba(139,115,85,0.08); border-color: #8b7355; }
+.section-nav a[data-section="jobs"]:hover { background: rgba(122,107,138,0.08); border-color: #7a6b8a; }
+
+/* Lead text below pills */
+.resource-lead {
+    font-size: 0.92rem;
+    color: var(--text-quiet);
+    margin-bottom: 2rem;
+}
+
+/* Section cards */
 .resource-section {
-    margin-bottom: 2.5rem;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px 8px 8px 2px;
+    padding: 1.5rem 1.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    scroll-margin-top: 7rem;
 }
 
 .resource-section:last-child {
     margin-bottom: 0;
+}
+
+.resource-section[data-section="tools"] { border-left-color: var(--pop); }
+.resource-section[data-section="informed"] { border-left-color: var(--accent); }
+.resource-section[data-section="courses"] { border-left-color: #6b8e6b; }
+.resource-section[data-section="educators"] { border-left-color: #8b7355; }
+.resource-section[data-section="jobs"] { border-left-color: #7a6b8a; }
+
+.resource-section .article-heading {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .resource-intro {
@@ -690,6 +763,7 @@ a.link:hover {
 
 .resource-list li:last-child {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
 .resource-list li::before {
@@ -1013,6 +1087,10 @@ footer a:hover {
     .article-heading { font-size: 1.15rem; }
     .topic-grid { grid-template-columns: 1fr; }
     .path-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0.65rem 1.25rem; }
+    .section-nav-inner { gap: 0.4rem; font-size: 0.7rem; }
+    .section-nav a { padding: 0.25rem 0.6rem; }
+    .resource-section { padding: 1.25rem 1.25rem 1rem; }
     .article-figure-inline {
         float: none;
         width: 100%;
