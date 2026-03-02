@@ -485,6 +485,12 @@ a.link:hover {
     margin-bottom: 0;
 }
 
+.about-body .sign-off {
+    text-align: right;
+    color: var(--text-quiet);
+    margin-top: 1.5rem;
+}
+
 /* ---- ARTICLE (long-form pages like HCI) ---- */
 .article {
     padding: 3rem 0 4rem;
