@@ -709,9 +709,11 @@ a.link:hover {
 
 /* Lead text below pills */
 .resource-lead {
-    font-size: 0.92rem;
+    font-size: 0.85rem;
+    font-style: italic;
     color: var(--text-quiet);
-    margin-bottom: 2rem;
+    margin-top: -0.25rem;
+    margin-bottom: 2.5rem;
 }
 
 /* Section cards */
