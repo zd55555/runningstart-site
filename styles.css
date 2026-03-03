@@ -1049,26 +1049,24 @@ a.link:hover {
 /* Feed column */
 .home-feed-item {
     display: block;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--rule);
+    padding: 0.75rem 0 0.75rem 1rem;
+    border-left: 2px solid var(--pop);
+    margin-bottom: 0.75rem;
     text-decoration: none;
-    transition: transform 0.2s ease;
-}
-
-.home-feed-item:first-of-type {
-    border-top: 1px solid var(--rule);
+    transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .home-feed-item:hover {
-    transform: translateX(4px);
+    border-left-color: var(--accent);
+    transform: translateX(3px);
 }
 
 .home-feed-title {
-    font-family: 'Newsreader', Georgia, serif;
-    font-size: 1rem;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.92rem;
     font-weight: 500;
-    color: var(--text);
-    line-height: 1.45;
+    color: var(--text-mid);
+    line-height: 1.5;
 }
 
 .home-feed-item:hover .home-feed-title {
