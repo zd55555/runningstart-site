@@ -1064,13 +1064,35 @@ a.link:hover {
 .home-feed-title {
     font-family: 'Hanken Grotesk', system-ui, sans-serif;
     font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text-mid);
-    line-height: 1.5;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.home-feed-excerpt {
+    display: block;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-quiet);
+    line-height: 1.55;
+    margin-top: 0.25rem;
+}
+
+.home-feed-arrow {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--pop);
+    margin-top: 0.3rem;
+    transition: transform 0.2s ease;
 }
 
 .home-feed-item:hover .home-feed-title {
     color: var(--accent);
+}
+
+.home-feed-item:hover .home-feed-arrow {
+    transform: translateX(3px);
 }
 
 /* ---- PATH CARDS (homepage) ---- */
