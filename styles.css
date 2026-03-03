@@ -262,6 +262,48 @@ a.link:hover {
     color: var(--text-mid);
 }
 
+/* ---- EXPANDABLE IMAGE / LIGHTBOX ---- */
+.expandable-img {
+    cursor: zoom-in;
+    transition: opacity 0.2s ease;
+}
+
+.expandable-img:hover {
+    opacity: 0.85;
+}
+
+.lightbox {
+    border: none;
+    background: transparent;
+    padding: 2rem;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+
+.lightbox::backdrop {
+    background: rgba(28, 25, 23, 0.88);
+}
+
+.lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+/* ---- SOURCE NOTES SPACING ---- */
+.source-notes {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+}
+
 /* ---- POSTS ---- */
 .posts {
     padding-top: 2rem;
